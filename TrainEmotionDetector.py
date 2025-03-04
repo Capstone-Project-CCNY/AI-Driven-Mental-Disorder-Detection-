@@ -15,4 +15,3 @@ width, height = 48, 48
 # Initialize image data generator with rescaling
 train_data_gen = ImageDataGenerator(rescale=1. / 255)
 validation_data_gen = ImageDataGenerator(rescale=1. / 255)
-
