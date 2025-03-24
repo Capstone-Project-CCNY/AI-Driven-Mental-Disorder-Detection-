@@ -1,0 +1,75 @@
+/* Import Google Font for headings */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Set entire app background to white */
+html, body, [class*="css"] {
+    background-color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Main container styling */
+.main-container {
+    background-image: url('assets/homepage.jpg'); /* Add background image */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Navigation bar styling */
+.navbar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    color: #537955 !important; /* Forest green color */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #e95d4d !important; /* Peach color */
+}
+
+/* Main title styling */
+h1 {
+    color: #e95d4d !important; /* Peach color */
+    font-family: 'Pacifico', 'Comic Sans MS', cursive !important;
+    font-size: 3.5rem !important;
+    text-align: center !important;
+    margin-top: 100px !important; /* Adjust as needed */
+}
+
+/* Tagline styling */
+h3 {
+    color: #537955 !important; /* Forest green color */
+    font-family: 'Comic Sans MS', cursive !important;
+    font-size: 1.8rem !important;
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+    font-weight: 400 !important;
+}
+
+/* Image styling */
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Welcome message styling */
+.welcome-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #343a40 !important;
+}
