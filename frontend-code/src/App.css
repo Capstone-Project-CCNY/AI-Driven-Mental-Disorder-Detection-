@@ -1,0 +1,19 @@
+.app-container {
+  min-height: 100vh;
+  position: relative;
+}
+
+.content-container::before {
+  content: "";
+  background-image: url("../public/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  z-index: -1;
+}
