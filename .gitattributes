@@ -1,2 +1,3 @@
 affectnet_convnext_large*.pt filter=lfs diff=lfs merge=lfs -text
 mental_disorder_detection/notebooks/Srishti_Version6_ConvNext_Large_AffectNet/Model/affectnet_convnext_large*.pt filter=lfs diff=lfs merge=lfs -text
+*.ipynb filter=lfs diff=lfs merge=lfs -text
