@@ -1,0 +1,22 @@
+.home-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.home-title {
+  font-family: "Pacifico", cursive;
+  color: #e95d4d;
+  font-size: 4rem;
+}
+
+.home-tagline {
+  font-style: italic;
+  color: #537955;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.home-image {
+  width: 350px;
+  margin-top: 1.2rem;
+}

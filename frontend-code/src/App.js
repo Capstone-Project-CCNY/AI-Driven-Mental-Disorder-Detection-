@@ -1,5 +1,16 @@
 import React, { useState } from "react";
 import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import Home from "./components/Home";
+import SignIn from "./components/SignIn";
+import ContactUS from "./components/ContactUs";
+import About from "./components/AboutUs";
+
+import {
   AppBar,
   Toolbar,
   Button,
@@ -7,11 +18,13 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import { Home, Info, Login } from "@mui/icons-material";
+import { Home as HomeIcon, Info, Login } from "@mui/icons-material";
 import "./App.css";
 
 function App() {
   const [showAbout, setShowAbout] = useState(false);
+  const navigate = useNavigate(); // for navigation
+
   return (
     <div className="app-container">
       {/* Material UI Navigation Bar */}
@@ -23,9 +36,10 @@ function App() {
           <Toolbar sx={{ justifyContent: "flex-end" }}>
             <Box sx={{ display: "flex", gap: 2 }}>
               <Button
+                onClick={() => navigate("/Home")}
                 variant="contained"
                 color="inherit"
-                startIcon={<Home />}
+                startIcon={<HomeIcon />}
                 sx={{
                   color: "#537955",
                   backgroundColor: "transparent",
@@ -38,6 +52,7 @@ function App() {
                 Home
               </Button>
               <Button
+                onClick={() => navigate("/SignIn")}
                 variant="contained"
                 color="inherit"
                 startIcon={<Login />}
@@ -53,6 +68,7 @@ function App() {
                 Sign In
               </Button>
               <Button
+                onClick={() => navigate("/ContactUs")}
                 variant="contained"
                 sx={{
                   color: "#537955",
@@ -66,6 +82,7 @@ function App() {
                 Contact Us
               </Button>
               <Button
+                onClick={() => navigate("/AboutUs")}
                 variant="contained"
                 onMouseEnter={() => setShowAbout(true)}
                 onMouseLeave={() => setShowAbout(false)}
@@ -130,6 +147,13 @@ function App() {
       )}
 
       <Container sx={{ mt: 12, textAlign: "center" }}>
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/ContactUs" element={<ContactUS />} />
+          <Route path="/AboutUs" element={<About />} />
+        </Routes>
+
         <div className="content-container">
           <h1 className="title">Bloom Well</h1>
           <h4 className="tagline">
