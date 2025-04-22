@@ -148,19 +148,27 @@ function App() {
 
       <Container sx={{ mt: 12, textAlign: "center" }}>
         <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="content-container">
+                <h1 className="title">Bloom Well</h1>
+                <h4 className="tagline">
+                  "When things change inside you, things change around you"
+                </h4>
+                <img
+                  src="/background.jpg"
+                  alt="Mind Blooming"
+                  className="bg-image"
+                />
+              </div>
+            }
+          />
           <Route path="/Home" element={<Home />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/ContactUs" element={<ContactUS />} />
           <Route path="/AboutUs" element={<About />} />
         </Routes>
-
-        <div className="content-container">
-          <h1 className="title">Bloom Well</h1>
-          <h4 className="tagline">
-            "When things change inside you, things change around you"
-          </h4>
-          <img src="/background.jpg" alt="Mind Blooming" className="bg-image" />
-        </div>
       </Container>
     </div>
   );
