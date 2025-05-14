@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
 function Home() {
   const navigate = useNavigate();
+  const [isRecording, setIsRecording] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleCapture = async () => {
+    setIsRecording(true);
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    videoRef.current.srcObject = stream;
+
+    const mediaRecorder = new MediaRecorder(stream);
+    const chunks = [];
+
+    mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+
+    mediaRecorder.onstop = async () => {
+      const blob = new Blob(chunks, { type: "video/webm" });
+      const formData = new FormData();
+      formData.append("video", blob, "capture.webm");
+
+      const response = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      alert("Predicted Emotion: " + result.emotion);
+
+      stream.getTracks().forEach((track) => track.stop());
+      setIsRecording(false);
+    };
+
+    mediaRecorder.start();
+    setTimeout(() => {
+      mediaRecorder.stop();
+    }, 5000); // Record for 5 seconds
+  };
 
   return (
     <div className="home-wrapper">
