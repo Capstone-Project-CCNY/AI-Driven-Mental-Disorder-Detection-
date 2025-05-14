@@ -1,9 +1,14 @@
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google.oauth2 import service_account
+from dotenv import load_dotenv
+import os
 
-# Paste folder ID here
-DRIVE_FOLDER_ID = '1t99ow_HKyvcBaYNIZ-yK6C2hyz1aeGpK'
+# Load environment variables from .env
+load_dotenv()
+
+# Paste Google drive folder ID here
+drive_id = os.getenv('DRIVE_FOLDER_ID')
 
 def upload_to_drive(filepath, filename):
     SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -17,7 +22,7 @@ def upload_to_drive(filepath, filename):
 
     file_metadata = {
         'name': filename,
-        'parents': [DRIVE_FOLDER_ID],
+        'parents': [drive_id],
     }
     media = MediaFileUpload(filepath, mimetype='video/webm')
 
