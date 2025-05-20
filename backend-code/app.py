@@ -8,8 +8,10 @@ import os
 from werkzeug.utils import secure_filename
 from collections import Counter
 import bcrypt
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 db_config = {
     'host': '127.0.0.1',
@@ -113,7 +115,7 @@ def login():
     conn.close()
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
-        return jsonify({'message': 'Login successful', 'user_id': user['id']})
+        return jsonify({'message': 'Login successful', 'user_id': user['id'], 'status': True})
     else:
         return jsonify({'error': 'Invalid username/email or password'}), 401
 

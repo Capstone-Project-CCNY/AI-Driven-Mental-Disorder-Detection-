@@ -12,7 +12,11 @@ function Dashboard() {
 
   const formatTime = (ms) => {
     const date = new Date(ms);
-    return date.toISOString().substr(11, 8) + "." + String(ms % 1000).padStart(3, "0");
+    return (
+      date.toISOString().substr(11, 8) +
+      "." +
+      String(ms % 1000).padStart(3, "0")
+    );
   };
 
   const startCamera = async () => {
@@ -44,6 +48,11 @@ function Dashboard() {
       mediaRecorderRef.current.stop();
     }
     setIsRecording(false);
+
+    // Add a slight delay to ensure blob is fully set
+    setTimeout(() => {
+      sendVideoForPrediction();
+    }, 500);
   };
 
   const retake = () => {
@@ -53,18 +62,47 @@ function Dashboard() {
     startCamera(); // Restart everything
   };
 
+  const sendVideoForPrediction = async () => {
+    if (!videoBlob) {
+      alert("No video recorded yet.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("video", videoBlob, "input_video.webm");
+
+    try {
+      const response = await fetch("http://localhost:5000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(
+          `Predicted Emotion: ${result.predicted_emotion}`
+        );
+        console.log("Full distribution:", result.full_distribution);
+      } else {
+        alert(result.error || "Prediction failed.");
+      }
+    } catch (error) {
+      console.error("Error during prediction:", error);
+      alert("An error occurred while predicting emotion.");
+    }
+  };
+
   useEffect(() => {
     return () => clearInterval(timerIntervalRef.current); // Cleanup on unmount
   }, []);
 
   return (
-
-      <div className="dashboard-container">
-        <p className="note">
-          🎥 We’ll now record your facial expressions to understand your emotional state. Please ensure at least 10
-          seconds
-          of video.
-        </p>
+    <div className="dashboard-container">
+      <p className="note">
+        🎥 We’ll now record your facial expressions to understand your emotional
+        state. Please ensure at least 10 seconds of video.
+      </p>
 
       {isRecording && (
         <p className="timer">
