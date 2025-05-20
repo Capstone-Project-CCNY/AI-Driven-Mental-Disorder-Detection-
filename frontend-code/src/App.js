@@ -6,9 +6,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "./components/Home";
-import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 import ContactUS from "./components/ContactUs";
 import About from "./components/AboutUs";
+import Dashboard from "./components/Dashboard";
 
 import {
   AppBar,
@@ -164,10 +165,11 @@ function App() {
               </div>
             }
           />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/ContactUs" element={<ContactUS />} />
-          <Route path="/AboutUs" element={<About />} />
+            <Route path="/Home" element={<Home/>}/>
+            <Route path="/SignIn" element={<SignUp/>}/>
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/ContactUs" element={<ContactUS/>}/>
+            <Route path="/AboutUs" element={<About/>}/>
         </Routes>
       </Container>
     </div>

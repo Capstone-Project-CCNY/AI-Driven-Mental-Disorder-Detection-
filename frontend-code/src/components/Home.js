@@ -44,6 +44,16 @@ function Home() {
     <div className="home-wrapper">
       <div className="overlay" />
 
+      {/* ✅ Custom hamburger icon */}
+      <div className="custom-hamburger" onClick={() => navigate("/")}>
+        <input type="checkbox" id="checkbox" />
+        <label htmlFor="checkbox" className="toggle">
+          <div className="bars" id="bar1"></div>
+          <div className="bars" id="bar2"></div>
+          <div className="bars" id="bar3"></div>
+        </label>
+      </div>
+
       <div className="home-heading-container">
         <h1 className="home-heading">Bloom Well</h1>
         <p className="home-tagline">
@@ -63,9 +73,17 @@ function Home() {
         </section>
 
         <section className="home-buttons fade-in">
-          <button className="btn-get-started">Get Started</button>
-          <button className="btn-signin" onClick={() => navigate("/SignIn")}>
-            Sign In
+          <button
+            className="btn-get-started"
+            onClick={() => navigate("/SignIn", { state: { flip: "signup" } })}
+          >
+            Get Started
+          </button>
+          <button
+            className="btn-signin"
+            onClick={() => navigate("/SignIn", { state: { flip: "login" } })}
+          >
+            Login
           </button>
         </section>
 
